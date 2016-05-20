@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet mobile example</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+
+    <script src="leaflet.js"></script>
+    <script src="jquery.min.js"></script>
+    <style>
+        body {
+        padding: 0;
+        margin: 0;
+        }
+        html, body, #map {
+        height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+
+<script>
+    //set monster on pos
+    //set area on pos
+    //remove monster from pos
+    //remove area from pos
+    //click on monster callback
+    //show player
+
+    var map = L.map('map').setView([50.05, 19.89], 10);
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+
+
+    //PLAYER
+    var player = {
+        lat: 0.0,
+        lng: 0.0,
+        marker: L.marker([0, 0]).addTo(map),
+        circle: L.circle([0, 0], 1).addTo(map),
+    };
+
+    //MAP
+    var mapViewCentered = 0;
+    var zoomLevel = 10;
+    var markers = new Array();
+
+
+
+    //INTERFACE
+    //Player position
+    function onLocationFound(lat, lng, acc) {
+
+        if (mapViewCentered < 1){
+            map.setView([lat, lng], 22);
+            mapViewCentered = 1;
+        }
+
+        map.removeLayer(player.marker);
+        map.removeLayer(player.circle);
+
+        var radius = acc;
+        player.marker = L.marker([lat, lng]).addTo(map);
+        player.circle = L.circle([lat, lng], radius).addTo(map);
+        player.lat = lat;
+        player.lng = lng;
+    };
+
+
+    //SET MONSTER ON A POSITION
+    function addMonster(lat, lng, mId, mName) {
+        var marker;
+
+        marker = L.marker([lat, lng]);
+        marker.addTo(map);
+        var mapMarker = {
+            lat: lat,
+            lng: lng,
+            marker: marker,
+            id: mId,
+            name: mName
+        };
+
+        markers.push(mapMarker);
+    };
+    //REMOVE MONSTER FROM THE MAP
+    function removeMarker(mId){
+        var index = -1;
+        for (i=0; i< markers.length; i++){
+            if (markers[i].id = mId){
+                map.removeLayer(markers[i].marker);
+                index = i;
+                break;
+            }
+        }
+        if (index > -1) {
+            markers.splice(index, 1);
+        }
+    };
+
+
+    map.locate({setView: true, maxZoom: 16});
+
+</script>
+</body>
+</html>
+
+
