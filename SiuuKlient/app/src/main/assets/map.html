@@ -7,8 +7,12 @@
 
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
 
-    <script src="leaflet.js"></script>
-    <script src="jquery.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="MarkerCluster.css" />
+    <link rel="stylesheet" href="MarkerCluster.Default.css" />
+    <script src="leaflet.markercluster-src.js"></script>
     <style>
         body {
         padding: 0;
@@ -23,12 +27,7 @@
 <div id="map"></div>
 
 <script>
-    //set monster on pos
-    //set area on pos
-    //remove monster from pos
-    //remove area from pos
-    //click on monster callback
-    //show player
+
 
     var map = L.map('map').setView([50.05, 19.89], 10);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -74,7 +73,7 @@
 
 
     //SET MONSTER ON A POSITION
-    function addMonster(lat, lng, mId, mName) {
+    function addMarker(lat, lng, mId, mName) {
         var marker;
 
         marker = L.marker([lat, lng]);
@@ -104,8 +103,19 @@
         }
     };
 
+    var markers = L.markerClusterGroup();
+
+    for (var i = 0; i < 100; i++) {
+        var title = "dfs"+i;//new L.LatLng(a[0], a[1])
+        var marker = L.marker(new L.LatLng(50.0 + Math.random(), 20.0 + Math.random()), { title: title });
+        marker.bindPopup(title);
+        markers.addLayer(marker);
+    }
+
+    map.addLayer(markers);
 
     map.locate({setView: true, maxZoom: 16});
+
 
 </script>
 </body>

@@ -3,6 +3,9 @@ package siuu.projekt.siuuklient;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,7 +21,10 @@ import android.webkit.WebView;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private WebView mapWebView;
+    private final LeafletMapFragment mapFragment = new LeafletMapFragment();
+    private SimpleLocationListener locationListener;
+
+
 
 
     @Override
@@ -46,13 +52,11 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        fillContainer(ft, mapFragment);
 
-        mapWebView = (WebView) findViewById(R.id.webMapView);
-        mapWebView = (WebView) findViewById(R.id.webMapView);
-        WebSettings webSettings = mapWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        mapWebView.loadUrl("file:///android_asset/map.html");
-
+        locationListener = new SimpleLocationListener(mapFragment, this);
     }
 
     @Override
@@ -108,4 +112,9 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    public void fillContainer(FragmentTransaction fragmentTransaction, Fragment fragment) {
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+        fragmentTransaction.commit();
+    }
+
 }
