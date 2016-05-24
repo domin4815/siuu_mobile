@@ -1,4 +1,4 @@
-package siuu.projekt.siuuklient;
+package siuu.projekt.siuuklient.location;
 
 import android.location.Location;
 

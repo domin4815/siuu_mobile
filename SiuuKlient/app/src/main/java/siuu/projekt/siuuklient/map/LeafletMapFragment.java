@@ -1,4 +1,4 @@
-package siuu.projekt.siuuklient;
+package siuu.projekt.siuuklient.map;
 
 
 import android.app.Activity;
@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import siuu.projekt.siuuklient.R;
+import siuu.projekt.siuuklient.connection.UpdatesRequester;
+import siuu.projekt.siuuklient.location.ILocationListener;
+import siuu.projekt.siuuklient.map.LeafletConnectorImpl;
 
 
 public class LeafletMapFragment extends Fragment implements ILocationListener {
@@ -42,6 +46,7 @@ public class LeafletMapFragment extends Fragment implements ILocationListener {
 
         //Bind application with Leaflet map
         leafletMap = new LeafletConnectorImpl(parent, mapWebView);
+        UpdatesRequester updatesRequester = new UpdatesRequester(getActivity(), leafletMap);
         mapWebView.addJavascriptInterface(leafletMap, "app");
 
 

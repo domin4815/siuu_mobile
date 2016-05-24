@@ -1,14 +1,16 @@
-package siuu.projekt.siuuklient;
+package siuu.projekt.siuuklient.map;
 
 import android.app.Activity;
 import android.location.Location;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 
+import siuu.projekt.siuuklient.map.ILeafletMapConnector;
+
 /**
  * Created by domin4815 on 15.05.16.
  */
-public class LeafletConnectorImpl implements ILeafletMapConnector{
+public class LeafletConnectorImpl implements ILeafletMapConnector {
 
     private WebView map;
     private Activity activity;

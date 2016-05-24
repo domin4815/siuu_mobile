@@ -1,4 +1,4 @@
-package siuu.projekt.siuuklient;
+package siuu.projekt.siuuklient.location;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -12,6 +12,10 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+
+import siuu.projekt.siuuklient.ApplicationUtils;
+import siuu.projekt.siuuklient.User;
+import siuu.projekt.siuuklient.location.ILocationListener;
 
 /**
  * Created by domin4815 on 15.02.16.
@@ -44,6 +48,9 @@ public class SimpleLocationListener implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
+        User user = ApplicationUtils.user;
+        user.setLat(location.getLatitude());
+        user.setLng(location.getLongitude());
         callback.onLocationChanged(location);
     }
 
