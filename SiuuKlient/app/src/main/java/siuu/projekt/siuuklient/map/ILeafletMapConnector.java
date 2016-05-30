@@ -2,6 +2,10 @@ package siuu.projekt.siuuklient.map;
 
 import android.location.Location;
 
+import java.util.List;
+
+import siuu.projekt.siuuklient.connection.dto.UserDto;
+
 /**
  * Android application <-> Leaflet map communication interface
  *
@@ -14,6 +18,8 @@ public interface ILeafletMapConnector {
      * @param location passes current location from Android app to Leaflet
      */
     void onLocationFound(Location location);
+
+    void onOtherUsersUpdate(List<UserDto> others);
 
 
 

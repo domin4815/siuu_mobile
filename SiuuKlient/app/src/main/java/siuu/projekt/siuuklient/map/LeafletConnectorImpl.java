@@ -5,6 +5,9 @@ import android.location.Location;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 
+import java.util.List;
+
+import siuu.projekt.siuuklient.connection.dto.UserDto;
 import siuu.projekt.siuuklient.map.ILeafletMapConnector;
 
 /**
@@ -36,6 +39,23 @@ public class LeafletConnectorImpl implements ILeafletMapConnector {
             }
         });
 
+    }
+
+    @Override
+    public void onOtherUsersUpdate(final List<UserDto> others) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                map.loadUrl("javascript:removeAllMarkers()");
+
+                for (UserDto u : others){
+                    map.loadUrl("javascript:addMarker("+u.getLat()+", "+u.getLng()+", "+u.getId()+", '"+u.getName()+"')");
+
+                }
+
+            }
+        });
     }
 
     /*

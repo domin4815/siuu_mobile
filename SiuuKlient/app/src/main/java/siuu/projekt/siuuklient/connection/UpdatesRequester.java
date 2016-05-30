@@ -41,6 +41,15 @@ public class UpdatesRequester {
                                 +"?id="+ApplicationUtils.user.getId()
                                 + "&lat="+ApplicationUtils.user.getLat()
                                 + "&lng="+ApplicationUtils.user.getLng(), "");
+
+                Type listType = new TypeToken<ArrayList<UserDto>>() {}.getType();
+
+                Gson gson = new Gson();
+                response = connector.doGet(ApplicationUtils.SERV_ADDR+ "/users");
+                List<UserDto> others = gson.fromJson(response, listType);
+
+                map.onOtherUsersUpdate(others);
+
                 System.out.println(response);
 
             } catch (IOException e) {

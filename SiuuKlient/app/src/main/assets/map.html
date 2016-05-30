@@ -72,7 +72,6 @@
     };
 
 
-    //SET MONSTER ON A POSITION
     function addMarker(lat, lng, mId, mName) {
         var marker;
 
@@ -88,7 +87,7 @@
 
         markers.push(mapMarker);
     };
-    //REMOVE MONSTER FROM THE MAP
+
     function removeMarker(mId){
         var index = -1;
         for (i=0; i< markers.length; i++){
@@ -103,7 +102,18 @@
         }
     };
 
-    var markers = L.markerClusterGroup();
+    function removeAllMarkers(){
+        for (i=0; i< markers.length; i++){
+            map.removeLayer(markers[i].marker);
+        }
+        while(markers.length > 0) {
+            var m = markers.pop();
+        }
+    };
+
+
+
+/*    var markers = L.markerClusterGroup();
 
     for (var i = 0; i < 100; i++) {
         var title = "dfs"+i;//new L.LatLng(a[0], a[1])
@@ -112,7 +122,10 @@
         markers.addLayer(marker);
     }
 
-    map.addLayer(markers);
+    map.addLayer(markers);*/
+
+    addMarker(50, 20, 222, "sdfsd");
+    removeAllMarkers();
 
     map.locate({setView: true, maxZoom: 16});
 
