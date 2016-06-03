@@ -47,10 +47,11 @@ public class SimpleLocationListener implements LocationListener {
 
 
     @Override
-    public void onLocationChanged(Location location) {
+    public void onLocationChanged(android.location.Location location) {
         User user = ApplicationUtils.user;
-        user.setLat(location.getLatitude());
-        user.setLng(location.getLongitude());
+        Location userLocation = user.getLocation();
+        userLocation.setLat(location.getLatitude());
+        userLocation.setLon(location.getLongitude());
         callback.onLocationChanged(location);
     }
 
