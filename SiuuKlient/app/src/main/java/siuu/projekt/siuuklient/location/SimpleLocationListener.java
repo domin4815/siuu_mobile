@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -14,8 +13,8 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 
 import siuu.projekt.siuuklient.ApplicationUtils;
+import siuu.projekt.siuuklient.Location;
 import siuu.projekt.siuuklient.User;
-import siuu.projekt.siuuklient.location.ILocationListener;
 
 /**
  * Created by domin4815 on 15.02.16.

@@ -7,8 +7,8 @@ import android.webkit.WebView;
 
 import java.util.List;
 
-import siuu.projekt.siuuklient.connection.dto.UserDto;
-import siuu.projekt.siuuklient.map.ILeafletMapConnector;
+import siuu.projekt.siuuklient.ApplicationUtils;
+import siuu.projekt.siuuklient.User;
 
 /**
  * Created by domin4815 on 15.05.16.
@@ -42,15 +42,15 @@ public class LeafletConnectorImpl implements ILeafletMapConnector {
     }
 
     @Override
-    public void onOtherUsersUpdate(final List<UserDto> others) {
+    public void onOtherUsersUpdate(final List<User> others) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
 
                 map.loadUrl("javascript:removeAllMarkers()");
 
-                for (UserDto u : others){
-                    map.loadUrl("javascript:addMarker("+u.getLat()+", "+u.getLng()+", "+u.getId()+", '"+u.getName()+"')");
+                for (User u : others) {
+                    map.loadUrl("javascript:addMarker(" + u.getLocation().getLat() + ", " + u.getLocation().getLon() + ", '" + u.getId() + "', '" + u.getName() + "')");
 
                 }
 

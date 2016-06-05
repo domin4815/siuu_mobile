@@ -4,7 +4,7 @@ import android.location.Location;
 
 import java.util.List;
 
-import siuu.projekt.siuuklient.connection.dto.UserDto;
+import siuu.projekt.siuuklient.User;
 
 /**
  * Android application <-> Leaflet map communication interface
@@ -19,7 +19,7 @@ public interface ILeafletMapConnector {
      */
     void onLocationFound(Location location);
 
-    void onOtherUsersUpdate(List<UserDto> others);
+    void onOtherUsersUpdate(List<User> others);
 
 
 
