@@ -48,7 +48,10 @@
     //MAP
     var mapViewCentered = 0;
     var zoomLevel = 10;
-    var markers = new Array();
+    var markersArray = new Array();
+    var markersGroup = L.markerClusterGroup();
+    map.addLayer(markersGroup);
+
 
 
 
@@ -76,7 +79,7 @@
         var marker;
 
         marker = L.marker([lat, lng]);
-        marker.addTo(map);
+        markersGroup.addLayer(marker);
         var mapMarker = {
             lat: lat,
             lng: lng,
@@ -85,47 +88,40 @@
             name: mName
         };
 
-        markers.push(mapMarker);
+        markersArray.push(mapMarker);
     };
 
     function removeMarker(mId){
         var index = -1;
-        for (i=0; i< markers.length; i++){
-            if (markers[i].id = mId){
-                map.removeLayer(markers[i].marker);
+        for (i=0; i< markersArray.length; i++){
+            if (markersArray[i].id = mId){
+                markersGroup.removeLayer(markersArray[i].marker);
                 index = i;
                 break;
             }
         }
         if (index > -1) {
-            markers.splice(index, 1);
+            markersArray.splice(index, 1);
         }
     };
 
     function removeAllMarkers(){
-        for (i=0; i< markers.length; i++){
-            map.removeLayer(markers[i].marker);
+        //for (i=0; i< markersArray.length; i++){
+            map.removeLayer(markersGroup);
+        //}
+        while(markersArray.length > 0) {
+            var m = markersArray.pop();
         }
-        while(markers.length > 0) {
-            var m = markers.pop();
-        }
+        markersGroup = L.markerClusterGroup();
+        map.addLayer(markersGroup);
+
     };
 
+    addMarker(50, 20, 1, '33');
+    addMarker(50, 20.1, 1, '33');
 
+    //removeAllMarkers();
 
-/*    var markers = L.markerClusterGroup();
-
-    for (var i = 0; i < 100; i++) {
-        var title = "dfs"+i;//new L.LatLng(a[0], a[1])
-        var marker = L.marker(new L.LatLng(50.0 + Math.random(), 20.0 + Math.random()), { title: title });
-        marker.bindPopup(title);
-        markers.addLayer(marker);
-    }
-
-    map.addLayer(markers);*/
-
-    addMarker(50, 20, 222, "sdfsd");
-    removeAllMarkers();
 
     map.locate({setView: true, maxZoom: 16});
 
