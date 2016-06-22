@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/preference_name"
-        android:textSize="30dp"
+        android:textSize="20dp"
         android:gravity="center_vertical"
         android:layout_marginLeft="20px"
         android:layout_alignParentTop="true"
