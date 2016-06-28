@@ -84,14 +84,14 @@
             id: mId,
             name: mName
         };
-
+        console.log('Dodajemy mafker '+ mId);
         markers.push(mapMarker);
     };
 
     function removeMarker(mId){
         var index = -1;
         for (i=0; i< markers.length; i++){
-            if (markers[i].id = mId){
+            if (markers[i].id == mId){
                 map.removeLayer(markers[i].marker);
                 index = i;
                 break;
@@ -113,19 +113,19 @@
 
 
 
-/*    var markers = L.markerClusterGroup();
+    /*    var markers = L.markerClusterGroup();
 
-    for (var i = 0; i < 100; i++) {
-        var title = "dfs"+i;//new L.LatLng(a[0], a[1])
-        var marker = L.marker(new L.LatLng(50.0 + Math.random(), 20.0 + Math.random()), { title: title });
-        marker.bindPopup(title);
-        markers.addLayer(marker);
-    }
+     for (var i = 0; i < 100; i++) {
+     var title = "dfs"+i;//new L.LatLng(a[0], a[1])
+     var marker = L.marker(new L.LatLng(50.0 + Math.random(), 20.0 + Math.random()), { title: title });
+     marker.bindPopup(title);
+     markers.addLayer(marker);
+     }
 
-    map.addLayer(markers);*/
+     map.addLayer(markers);*/
 
     addMarker(50, 20, "foo", "sdfsd");
-    removeAllMarkers();
+    //  removeAllMarkers();
 
     map.locate({setView: true, maxZoom: 16});
 
