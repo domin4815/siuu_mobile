@@ -1,17 +1,19 @@
 package siuu.projekt.siuuklient;
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class User {
     private String id;
     private String name;
     private Location location;
-    private List<PreferedActivity> preferedActivities;
+    private Set<PreferedActivity> preferedActivities;
 
     public User() {}
 
-    public User(String id, String name, Location location, List<PreferedActivity> preferedActivities) {
+    public User(String id, String name, Location location, Set<PreferedActivity> preferedActivities) {
         this.id = id;
 
         this.location = location;
@@ -38,11 +40,11 @@ public class User {
         this.location = location;
     }
 
-    public List<PreferedActivity> getPreferedActivities() {
+    public Set<PreferedActivity> getPreferedActivities() {
         return preferedActivities;
     }
 
-    public void setPreferedActivities(List<PreferedActivity> preferedActivities) {
+    public void setPreferedActivities(Set<PreferedActivity> preferedActivities) {
         this.preferedActivities = preferedActivities;
     }
 }

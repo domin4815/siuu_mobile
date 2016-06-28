@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import siuu.projekt.siuuklient.ApplicationUtils;
 import siuu.projekt.siuuklient.Location;
@@ -31,7 +32,7 @@ public class UpdatePreferedActivitiesTask extends AsyncTask<Void, Void, Void> {
             String url = ApplicationUtils.SERV_ADDR + "/user/{id}/activities";
             Map<String, String> urlParams = new HashMap<String, String>();
             urlParams.put("id", user.getId());
-            List<PreferedActivity> requestBody = user.getPreferedActivities();
+            Set<PreferedActivity> requestBody = user.getPreferedActivities();
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
             restTemplate.postForObject(url, requestBody, Void.class, urlParams);
