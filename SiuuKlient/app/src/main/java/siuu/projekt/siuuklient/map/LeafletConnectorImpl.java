@@ -58,6 +58,22 @@ public class LeafletConnectorImpl implements ILeafletMapConnector {
         });
     }
 
+    @Override
+    public void onFirstLocation(final siuu.projekt.siuuklient.Location location) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                map.loadUrl("javascript:onLocationFound("
+                        + location.getLat()
+                        + "," + location.getLon()
+                        + "," + 20
+                        + ")");
+
+            }
+        });
+    }
+
     /*
 * JavaScript Interface. Web code can access methods in here
 * (as long as they have the @JavascriptInterface annotation)

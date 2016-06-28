@@ -2,6 +2,7 @@ package siuu.projekt.siuuklient.map;
 
 
 import android.app.Activity;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import siuu.projekt.siuuklient.ApplicationUtils;
 import siuu.projekt.siuuklient.R;
 import siuu.projekt.siuuklient.connection.UpdatesRequester;
 import siuu.projekt.siuuklient.location.ILocationListener;
@@ -49,6 +51,7 @@ public class LeafletMapFragment extends Fragment implements ILocationListener {
         UpdatesRequester updatesRequester = new UpdatesRequester(getActivity(), leafletMap);
         mapWebView.addJavascriptInterface(leafletMap, "app");
 
+        //leafletMap.onFirstLocation(ApplicationUtils.user.getLocation());
 
 
         return view;
@@ -57,6 +60,9 @@ public class LeafletMapFragment extends Fragment implements ILocationListener {
     @Override
     public void onLocationChanged(final android.location.Location location) {
 
+        ApplicationUtils.user.getLocation().setLat(location.getLatitude());
+        ApplicationUtils.user.getLocation().setLon(location.getLongitude());
+
         final Activity parent = getActivity();
         if (parent == null){
             return;
@@ -64,5 +70,6 @@ public class LeafletMapFragment extends Fragment implements ILocationListener {
         leafletMap.onLocationFound(location);
 
     }
+
 
 }

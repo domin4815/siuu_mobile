@@ -21,14 +21,13 @@ import siuu.projekt.siuuklient.connection.UpdateLocationTask;
 import siuu.projekt.siuuklient.connection.UpdatePreferedActivitiesTask;
 import siuu.projekt.siuuklient.location.SimpleLocationListener;
 import siuu.projekt.siuuklient.map.LeafletMapFragment;
+import siuu.projekt.siuuklient.preferences.PreferencesFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private final LeafletMapFragment mapFragment = new LeafletMapFragment();
     private SimpleLocationListener locationListener;
-
-
 
 
     @Override
@@ -108,14 +107,14 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
+        if (id == R.id.nav_preferences) {
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            fillContainer(ft, new PreferencesFragment());
+        } else if (id == R.id.nav_map) {
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            fillContainer(ft, mapFragment);
 
         }
 

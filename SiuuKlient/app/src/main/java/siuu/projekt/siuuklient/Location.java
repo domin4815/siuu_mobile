@@ -1,8 +1,8 @@
 package siuu.projekt.siuuklient;
 
 public class Location {
-    private double lon;
-    private double lat;
+    private double lon = 0.0;
+    private double lat = 0.0;
 
     public Location() {}
 

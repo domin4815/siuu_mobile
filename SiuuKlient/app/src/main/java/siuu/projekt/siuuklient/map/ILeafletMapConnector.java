@@ -21,6 +21,9 @@ public interface ILeafletMapConnector {
 
     void onOtherUsersUpdate(List<User> others);
 
+    void onFirstLocation(siuu.projekt.siuuklient.Location location);
+
+
 
 
 }
