@@ -16,6 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import siuu.projekt.siuuklient.connection.RegisterUserTask;
+import siuu.projekt.siuuklient.connection.UpdateLocationTask;
+import siuu.projekt.siuuklient.connection.UpdatePreferedActivitiesTask;
 import siuu.projekt.siuuklient.location.SimpleLocationListener;
 import siuu.projekt.siuuklient.map.LeafletMapFragment;
 
@@ -58,6 +61,13 @@ public class MainActivity extends AppCompatActivity
         fillContainer(ft, mapFragment);
 
         locationListener = new SimpleLocationListener(mapFragment, this);
+
+        ApplicationUtils.user.setId("abcd1234");
+        ApplicationUtils.user.setName("abcd1234");
+        ApplicationUtils.user.setLocation(new Location(49.9, 19.5));
+        new RegisterUserTask(ApplicationUtils.user).execute();
+        ApplicationUtils.user.getPreferedActivities().add(new PreferedActivity("board game", "chess"));
+        new UpdatePreferedActivitiesTask(ApplicationUtils.user).execute();
     }
 
     @Override

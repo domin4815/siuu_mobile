@@ -1,51 +1,48 @@
 package siuu.projekt.siuuklient;
 
 
+import java.util.List;
 
 public class User {
-
-    private Integer id = 1;
-
+    private String id;
     private String name;
+    private Location location;
+    private List<PreferedActivity> preferedActivities;
 
-    private Double lat;
-    private Double lng;
+    public User() {}
 
-    public User(String name, Double lat, Double lng) {
-        this.name = name;
-        this.lat = lat;
-        this.lng = lng;
+    public User(String id, String name, Location location, List<PreferedActivity> preferedActivities) {
+        this.id = id;
+
+        this.location = location;
+        this.preferedActivities = preferedActivities;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
+    public Location getLocation() {
+        return location;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
-    public Double getLat() {
-        return lat;
+    public List<PreferedActivity> getPreferedActivities() {
+        return preferedActivities;
     }
 
-    public void setLat(Double lat) {
-        this.lat = lat;
-    }
-
-    public Double getLng() {
-        return lng;
-    }
-
-    public void setLng(Double lng) {
-        this.lng = lng;
+    public void setPreferedActivities(List<PreferedActivity> preferedActivities) {
+        this.preferedActivities = preferedActivities;
     }
 }
