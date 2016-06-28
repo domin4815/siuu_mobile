@@ -72,20 +72,26 @@
     };
 
 
-    function addMarker(lat, lng, mId, mName) {
+    function addMarker(lat, lng, mId, mName, type) {
         var marker;
 
         marker = L.marker([lat, lng]);
         marker.addTo(map);
+
+        if (type === 'EVENT'){
+            marker.bindPopup('<b>'+mName+'</b><br>').openPopup();
+        }
         var mapMarker = {
             lat: lat,
             lng: lng,
             marker: marker,
             id: mId,
-            name: mName
+            name: mName,
+            type: type
         };
         console.log('Dodajemy mafker '+ mId);
         markers.push(mapMarker);
+
     };
 
     function removeMarker(mId){
@@ -124,7 +130,7 @@
 
      map.addLayer(markers);*/
 
-    //addMarker(50, 20, "foo", "sdfsd");
+    //addMarker(50, 20, "foo", "sdfsd", 'EVENT');
     //  removeAllMarkers();
 
     map.locate({setView: true, maxZoom: 16});

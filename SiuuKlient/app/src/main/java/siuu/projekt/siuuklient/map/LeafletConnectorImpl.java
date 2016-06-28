@@ -50,7 +50,7 @@ public class LeafletConnectorImpl implements ILeafletMapConnector {
                 map.loadUrl("javascript:removeAllMarkers()");
 
                 for (User u : others) {
-                    map.loadUrl("javascript:addMarker(" + u.getLocation().getLat() + ", " + u.getLocation().getLon() + ", '" + u.getId() + "', '" + u.getName() + "')");
+                    map.loadUrl("javascript:addMarker(" + u.getLocation().getLat() + ", " + u.getLocation().getLon() + ", '" + u.getId() + "', '" + u.getName() + ", 'USER'')");
 
                 }
 
