@@ -14,7 +14,8 @@ public class User {
     public User() {}
 
     public User(String id, String name, Location location, Set<PreferedActivity> preferedActivities) {
-        this.id = id;
+        this.id = name;
+        this.name = name;
 
         this.location = location;
         this.preferedActivities = preferedActivities;

@@ -75,20 +75,32 @@
     function addMarker(lat, lng, mId, mName, type) {
         var marker;
 
+
         marker = L.marker([lat, lng]);
         marker.addTo(map);
-
+        var mapMarker;
         if (type === 'EVENT'){
             marker.bindPopup('<b>'+mName+'</b><br>').openPopup();
+            mapMarker = {
+                lat: lat,
+                lng: lng,
+                marker: marker,
+                id: mId,
+                name: mName,
+                typeId: 'EVENT'
+            };
+        } else {
+            mapMarker = {
+                lat: lat,
+                lng: lng,
+                marker: marker,
+                id: mId,
+                name: mName,
+                typeId: 'USER'
+            };
+
         }
-        var mapMarker = {
-            lat: lat,
-            lng: lng,
-            marker: marker,
-            id: mId,
-            name: mName,
-            type: type
-        };
+
         console.log('Dodajemy mafker '+ mId);
         markers.push(mapMarker);
 
@@ -108,33 +120,38 @@
         }
     };
 
-    function removeAllMarkers(){
-        for (i=0; i< markers.length; i++){
-            map.removeLayer(markers[i].marker);
-        }
-        while(markers.length > 0) {
-            var m = markers.pop();
+    function removeAllUsersMarkers(){
+
+        var i = markers.length;
+        while (i-- ) {
+            if (markers[i].typeId === 'USER'){
+                map.removeLayer(markers[i].marker);
+                markers.splice(i, 1);
+
+            }
         }
     };
 
+    function removeAllEventsMarkers(){
 
+        var i = markers.length;
+        while (i-- ) {
+            if (markers[i].typeId === 'EVENT'){
+                map.removeLayer(markers[i].marker);
+                markers.splice(i, 1);
 
-    /*    var markers = L.markerClusterGroup();
-
-     for (var i = 0; i < 100; i++) {
-     var title = "dfs"+i;//new L.LatLng(a[0], a[1])
-     var marker = L.marker(new L.LatLng(50.0 + Math.random(), 20.0 + Math.random()), { title: title });
-     marker.bindPopup(title);
-     markers.addLayer(marker);
-     }
-
-     map.addLayer(markers);*/
-
-    //addMarker(50, 20, "foo", "sdfsd", 'EVENT');
-    //  removeAllMarkers();
+            }
+        }
+    };
+    //addMarker(50.0679941, 19.9125159, 'Zbigniew44', 'null', 'USER');
 
     map.locate({setView: true, maxZoom: 16});
 
+    function onMapClick(e) {
+        app.mapClicked(e.latlng.lat+ ' '+  e.latlng.lng)
+    }
+
+    map.on('click', onMapClick);
 
 </script>
 </body>

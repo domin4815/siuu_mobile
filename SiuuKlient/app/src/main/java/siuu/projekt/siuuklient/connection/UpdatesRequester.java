@@ -2,19 +2,17 @@ package siuu.projekt.siuuklient.connection;
 
 import android.content.Context;
 
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import siuu.projekt.siuuklient.ApplicationUtils;
-import siuu.projekt.siuuklient.User;
-import siuu.projekt.siuuklient.map.ILeafletMapConnector;
+import siuu.projekt.siuuklient.map.LeafletConnectorImpl;
 
 public class UpdatesRequester {
     private Timer timer = new Timer();
     private HttpConnector connector = new HttpConnector();
-    private ILeafletMapConnector map;
+    private LeafletConnectorImpl map;
 
-    public UpdatesRequester(Context parent, ILeafletMapConnector leafletMap){
+    public UpdatesRequester(Context parent, LeafletConnectorImpl leafletMap){
         this.map = leafletMap;
         timer.scheduleAtFixedRate(new CyclicUpdatesTask(),
                                     5000,
@@ -30,9 +28,10 @@ public class UpdatesRequester {
 
         @Override
         public void run() {
-            new UpdateLocationTask(ApplicationUtils.user).execute();
-            new FindMatchingUsersTask(ApplicationUtils.user, 10000, map).execute();
-            new GetAllPreferencesList().execute();
+            //new UpdateLocationTask(ApplicationUtils.user).execute();
+           // new FindMatchingUsersTask(ApplicationUtils.user, 10000, map).execute();
+          //  new GetAllPreferencesList().execute();
+            new GetEventsTask(map).execute();
         }
 
     }

@@ -1,6 +1,5 @@
 package siuu.projekt.siuuklient.connection;
 
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -9,15 +8,13 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import siuu.projekt.siuuklient.ApplicationUtils;
 import siuu.projekt.siuuklient.PreferedActivity;
 import siuu.projekt.siuuklient.User;
-import siuu.projekt.siuuklient.map.ILeafletMapConnector;
+import siuu.projekt.siuuklient.map.LeafletConnectorImpl;
 
 /**
  * Created by prolativ on 6/3/16.
@@ -25,13 +22,15 @@ import siuu.projekt.siuuklient.map.ILeafletMapConnector;
 public class FindMatchingUsersTask extends AsyncTask<Void, Void, Void> {
     private User user;
     private double distance;
-    private ILeafletMapConnector map;
+    private LeafletConnectorImpl map;
 
-    public FindMatchingUsersTask(User user, double distance, ILeafletMapConnector map) {
+    public FindMatchingUsersTask(User user, double distance, LeafletConnectorImpl map) {
         this.user = user;
         this.distance = distance;
         this.map = map;
     }
+
+
 
     @Override
     protected Void doInBackground(Void... params) {

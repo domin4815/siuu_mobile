@@ -1,6 +1,8 @@
 package siuu.projekt.siuuklient.map;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
@@ -8,12 +10,14 @@ import android.webkit.WebView;
 import java.util.List;
 
 import siuu.projekt.siuuklient.ApplicationUtils;
+import siuu.projekt.siuuklient.NewEventActivity;
 import siuu.projekt.siuuklient.User;
+import siuu.projekt.siuuklient.preferences.Event;
 
 /**
  * Created by domin4815 on 15.05.16.
  */
-public class LeafletConnectorImpl implements ILeafletMapConnector {
+public class LeafletConnectorImpl {
 
     private WebView map;
     private Activity activity;
@@ -23,7 +27,6 @@ public class LeafletConnectorImpl implements ILeafletMapConnector {
         this.activity = activity;
     }
 
-    @Override
     public void onLocationFound(final Location location) {
 
         activity.runOnUiThread(new Runnable() {
@@ -41,34 +44,38 @@ public class LeafletConnectorImpl implements ILeafletMapConnector {
 
     }
 
-    @Override
     public void onOtherUsersUpdate(final List<User> others) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
 
-                map.loadUrl("javascript:removeAllMarkers()");
+                map.loadUrl("javascript:removeAllUsersMarkers()");
 
                 for (User u : others) {
-                    map.loadUrl("javascript:addMarker(" + u.getLocation().getLat() + ", " + u.getLocation().getLon() + ", '" + u.getId() + "', '" + u.getName() + ", 'USER'')");
-
+                    if (u.getId().equals(ApplicationUtils.user.getId())){
+                        continue;
+                    }
+                    map.loadUrl("javascript:addMarker("+u.getLocation().getLat()+
+                            ", "+u.getLocation().getLon()+", '"+u.getId()+"', 'null', 'USER')");
                 }
 
             }
         });
     }
 
-    @Override
-    public void onFirstLocation(final siuu.projekt.siuuklient.Location location) {
+    public void onEventsUpdate(final List<Event> others) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
 
-                map.loadUrl("javascript:onLocationFound("
-                        + location.getLat()
-                        + "," + location.getLon()
-                        + "," + 20
-                        + ")");
+                map.loadUrl("javascript:removeAllEventsMarkers()");
+                for (Event u : others) {
+
+                    map.loadUrl("javascript:addMarker("+u.getLocation().getLat()+
+                            ", "+u.getLocation().getLon()+", '"+u.getId()+"', '"
+                            +"Category: "+u.getCategory()+"<br>"+u.getName()+u.getComment()+"', 'EVENT')");
+                }
+
 
             }
         });
@@ -79,7 +86,18 @@ public class LeafletConnectorImpl implements ILeafletMapConnector {
 * (as long as they have the @JavascriptInterface annotation)
 */
     @JavascriptInterface
-    public String makeToast(String message, String lengthLong){
+    public String mapClicked(String message){
+        System.out.println(message);
+        Intent intent = new Intent(activity, NewEventActivity.class);
+        activity.startActivity(intent);
+        return null;
+    }
+
+    @JavascriptInterface
+    public String eventClicked(String message){
+        System.out.println(message);
+        Intent intent = new Intent(activity, NewEventActivity.class);
+        activity.startActivity(intent);
         return null;
     }
 
