@@ -87,8 +87,11 @@ public class LeafletConnectorImpl {
 */
     @JavascriptInterface
     public String mapClicked(String message){
+        String coords[] = message.split(" ");
         System.out.println(message);
         Intent intent = new Intent(activity, NewEventActivity.class);
+        intent.putExtra("LAT", coords[0]);
+        intent.putExtra("LON", coords[1]);
         activity.startActivity(intent);
         return null;
     }
