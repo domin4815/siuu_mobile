@@ -14,7 +14,7 @@ import siuu.projekt.siuuklient.ApplicationUtils;
 /**
  * Created by domin4815 on 28.06.16.
  */
-public class GetAllPreferencesList  extends AsyncTask<Void, Void, Void> {
+public class GetAllPreferencesListTask extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected Void doInBackground(Void... params) {

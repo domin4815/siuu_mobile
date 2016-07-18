@@ -16,21 +16,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText"
         android:layout_gravity="center_horizontal"
-        android:text="http://10.22.112.73:8080" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/user"
-        android:text="Zbigniew44" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/password"
-        android:text="ala123" />
+        android:text="http://192.168.42.89:8080" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,10 +24,18 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/password" />
 
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/facebook_login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/button"
+        android:text="OK"
+        android:id="@+id/ok_button"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

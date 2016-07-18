@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "24.0.0 rc4"
+    buildToolsVersion "24.0.0"
 
     defaultConfig {
         applicationId "siuu.projekt.siuuklient"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -29,6 +29,13 @@ android {
         exclude 'META-INF/NOTICE.txt'
         exclude 'META-INF/notice.txt'
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -40,4 +47,5 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.3.2'
     provided "org.projectlombok:lombok:1.16.8"
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.14.0'
 }

@@ -34,6 +34,7 @@ public class UpdatePreferedActivitiesTask extends AsyncTask<Void, Void, Void> {
             urlParams.put("id", user.getId());
             Set<PreferedActivity> requestBody = user.getPreferedActivities();
             RestTemplate restTemplate = new RestTemplate();
+            Log.i("", "sending update");
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
             restTemplate.postForObject(url, requestBody, Void.class, urlParams);
         } catch (Exception e) {

@@ -16,6 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.facebook.AccessToken;
+
+import siuu.projekt.siuuklient.connection.GetFriendsTask;
 import siuu.projekt.siuuklient.connection.RegisterUserTask;
 import siuu.projekt.siuuklient.connection.UpdateLocationTask;
 import siuu.projekt.siuuklient.connection.UpdatePreferedActivitiesTask;
@@ -64,6 +67,13 @@ public class MainActivity extends AppCompatActivity
         ApplicationUtils.user.setLocation(new Location(49.9, 19.5));
         ApplicationUtils.user.getPreferedActivities().add(new PreferedActivity("board game", "chess"));
         new UpdatePreferedActivitiesTask(ApplicationUtils.user).execute();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        System.out.println("friends");
+        new GetFriendsTask(AccessToken.getCurrentAccessToken().getToken()).execute();
     }
 
     @Override
@@ -119,6 +129,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     public void fillContainer(FragmentTransaction fragmentTransaction, Fragment fragment) {
         fragmentTransaction.replace(R.id.fragmentContainer, fragment);
         fragmentTransaction.commit();
