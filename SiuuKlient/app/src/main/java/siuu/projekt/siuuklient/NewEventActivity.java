@@ -7,14 +7,20 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class NewEventActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -66,21 +72,34 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
             lonText.setText(lonStr);
         }
 
+        List<String> prefs = new LinkedList<>();
+        prefs.addAll(ApplicationUtils.allPreferencesList);
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, prefs);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category.setAdapter(dataAdapter);
+        category.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-    }
-
-    @Override
-    public void onStop() {
-            super.onStop();
-        }
 
     @Override
     public void onClick(View v) {
+
+    }
+
+    public class CustomOnItemSelectedListener implements AdapterView.OnItemSelectedListener {
+
+        public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
+            Toast.makeText(parent.getContext(),
+                    "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> arg0) {
+            // TODO Auto-generated method stub
+        }
 
     }
 }

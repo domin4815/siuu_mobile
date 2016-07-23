@@ -10,7 +10,7 @@ import java.util.Set;
  */
 public class ApplicationUtils {
     public static String SERV_ADDR = "http://10.22.106.61:8080"; //"http://10.22.112.73:8080";
-    public static final long UPDATES_INTERVAL = 10000;
+    public static final long UPDATES_INTERVAL = 30000;
     public static User user;//
     public static final Set<String> allPreferencesList = new HashSet<>();
 
