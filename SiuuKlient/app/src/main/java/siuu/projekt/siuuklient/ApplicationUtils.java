@@ -13,5 +13,13 @@ public class ApplicationUtils {
     public static final long UPDATES_INTERVAL = 30000;
     public static User user;//
     public static final Set<String> allPreferencesList = new HashSet<>();
+    static {
+        allPreferencesList.add("swimming pool");
+        allPreferencesList.add("soccer");
+        allPreferencesList.add("volleyball");
+        allPreferencesList.add("tennis");
+        allPreferencesList.add("basketball");
+        allPreferencesList.add("table tennis");
+    }
 
 }

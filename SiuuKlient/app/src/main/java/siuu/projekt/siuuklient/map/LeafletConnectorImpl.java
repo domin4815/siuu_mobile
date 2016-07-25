@@ -1,7 +1,6 @@
 package siuu.projekt.siuuklient.map;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.webkit.JavascriptInterface;
@@ -11,8 +10,9 @@ import java.util.List;
 
 import siuu.projekt.siuuklient.ApplicationUtils;
 import siuu.projekt.siuuklient.NewEventActivity;
+import siuu.projekt.siuuklient.SubscribeEventActivity;
 import siuu.projekt.siuuklient.User;
-import siuu.projekt.siuuklient.preferences.Event;
+import siuu.projekt.siuuklient.preferences.EventDto;
 
 /**
  * Created by domin4815 on 15.05.16.
@@ -63,13 +63,13 @@ public class LeafletConnectorImpl {
         });
     }
 
-    public void onEventsUpdate(final List<Event> others) {
+    public void onEventsUpdate(final List<EventDto> others) {
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
 
                 map.loadUrl("javascript:removeAllEventsMarkers()");
-                for (Event u : others) {
+                for (EventDto u : others) {
 
                     map.loadUrl("javascript:addMarker("+u.getLocation().getLat()+
                             ", "+u.getLocation().getLon()+", '"+u.getId()+"', '"
@@ -99,7 +99,8 @@ public class LeafletConnectorImpl {
     @JavascriptInterface
     public String eventClicked(String message){
         System.out.println(message);
-        Intent intent = new Intent(activity, NewEventActivity.class);
+        Intent intent = new Intent(activity, SubscribeEventActivity.class);
+        intent.putExtra("EVENT", message);
         activity.startActivity(intent);
         return null;
     }

@@ -1,9 +1,6 @@
 package siuu.projekt.siuuklient;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,14 +10,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
+import siuu.projekt.siuuklient.connection.CreateEventTask;
+import siuu.projekt.siuuklient.preferences.EventDto;
 
 public class NewEventActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -35,6 +35,10 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
     private TextView lonText;
     private Spinner category;
     private Button createl;
+    private String spinnerCatSelected = "";
+
+    private Calendar calendar = Calendar.getInstance();
+    private DateFormat dateFormat  = new SimpleDateFormat("yyyy-mm-dd");
 
 
     @Override
@@ -45,15 +49,22 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
         setSupportActionBar(toolbar);
 
         desc = (EditText) findViewById(R.id.desc);
-        desc.setText("...");
+        desc.setText("");
         fromDate = (EditText) findViewById(R.id.from);
+        fromDate.setText(dateFormat.format(new Date()));
         fromTime = (EditText) findViewById(R.id.fromTime);
+        fromTime.setText("12:00");
 
         toDate = (EditText) findViewById(R.id.to);
+        toDate.setText(dateFormat.format(new Date()));
+
         toTime = (EditText) findViewById(R.id.toTimeEdit);
+        toTime.setText("13:00");
 
         min = (EditText) findViewById(R.id.minNum);
+        min.setText("2");
         max = (EditText) findViewById(R.id.maxNum);
+        max.setText("10");
 
         latText = (TextView) findViewById(R.id.latText);
         lonText = (TextView) findViewById(R.id.lon);
@@ -81,23 +92,56 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
         category.setAdapter(dataAdapter);
         category.setOnItemSelectedListener(new CustomOnItemSelectedListener());
 
+
     }
 
     @Override
     public void onClick(View v) {
+
+
+        EventDto eventDto = new EventDto();
+        eventDto.setCategory(spinnerCatSelected);
+        eventDto.setComment(desc.getText().toString());
+        Date dateFrom = new Date();
+        Date dateTo = new Date((new Date()).getTime() + 1000*60*1);
+        //todo: set time
+        try {
+            dateFrom = dateFormat.parse(fromDate.getText().toString());
+            dateTo = dateFormat.parse(toDate.getText().toString());
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        dateTo = new Date((dateTo).getTime() + 1000*60*1);
+        eventDto.setMaxPeople(Integer.parseInt(max.getText().toString()));
+        eventDto.setMinPeople(Integer.parseInt(min.getText().toString()));
+
+        eventDto.setStartTime(dateFrom);
+        eventDto.setEndTime(dateTo);
+        Location location = new Location();
+        location.setLat(Double.parseDouble(latText.getText().toString()));
+        location.setLon(Double.parseDouble(lonText.getText().toString()));
+        eventDto.setLocation(location);
+
+        new CreateEventTask(eventDto).execute();
+        finish();
 
     }
 
     public class CustomOnItemSelectedListener implements AdapterView.OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
-            Toast.makeText(parent.getContext(),
+    /*        Toast.makeText(parent.getContext(),
                     "OnItemSelectedListener : " + parent.getItemAtPosition(pos).toString(),
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_SHORT).show();*/
+
+            spinnerCatSelected = parent.getItemAtPosition(pos).toString();
         }
 
         @Override
         public void onNothingSelected(AdapterView<?> arg0) {
+
             // TODO Auto-generated method stub
         }
 

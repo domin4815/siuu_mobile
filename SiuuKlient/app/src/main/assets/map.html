@@ -78,9 +78,9 @@
             shadowUrl: 'shadow.png',
             iconSize:     [50, 50],
             shadowSize:   [0, 0],
-            iconAnchor:   [50, 50],
+            iconAnchor:   [0, 0],
             shadowAnchor: [50, 10],
-            popupAnchor:  [-3, -76]
+            popupAnchor:  [30, 0]
         }
     });
 
@@ -101,7 +101,7 @@
         marker.addTo(map);
         var mapMarker;
         if (type === 'EVENT'){
-            marker.bindPopup('<b>'+mName+'</b><br>');
+            marker.bindPopup('<b>'+mName+'</b><br><button onclick="showEvent()">Click me</button>');
             mapMarker = {
                 lat: lat,
                 lng: lng,
@@ -171,7 +171,6 @@
     function onMapClick(e) {
 
         // {icon: ratIcon}
-
         var markerEvent = L.marker([e.latlng.lat, e.latlng.lng], {icon: eventIcon});
         markerEvent.addTo(map);
 
@@ -184,10 +183,13 @@
             app.mapClicked(e.latlng.lat+ ' '+  e.latlng.lng)
 
         },500);
-
     }
 
-   // addMarker(50, 20, '33', '32r4234', 'EVENT');
+    function showEvent(e) {
+        app.eventClicked(e);
+
+    }
+    addMarker(50, 20, '33', '32r4234', 'EVENT');
     map.on('click', onMapClick);
 
 </script>
