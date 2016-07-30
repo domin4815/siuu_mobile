@@ -1,5 +1,8 @@
 package siuu.projekt.siuuklient.preferences;
 
+import org.joda.time.DateTime;
+
+import java.util.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -9,13 +12,17 @@ import lombok.Setter;
 import siuu.projekt.siuuklient.Location;
 
 
-public class Event {
+public class EventDto {
 
     private String id;
 
     private String name;
 
     private String category;
+
+    private Date startTime;
+
+    private Date endTime;
 
     private Location location;
 
@@ -29,10 +36,10 @@ public class Event {
 
     private String comment;
 
-    public Event() {
+    public EventDto() {
     }
 
-    public Event(String id, String name, String category, Location location, int maxPeople, int minPeople, String owner, List<String> participants, String comment) {
+    public EventDto(String id, String name, String category, Location location, int maxPeople, int minPeople, String owner, List<String> participants, String comment) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -42,6 +49,22 @@ public class Event {
         this.owner = owner;
         this.participants = participants;
         this.comment = comment;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public String getId() {

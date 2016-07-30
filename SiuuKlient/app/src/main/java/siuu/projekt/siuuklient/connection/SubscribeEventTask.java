@@ -9,18 +9,17 @@ import org.springframework.web.client.RestTemplate;
 import siuu.projekt.siuuklient.ApplicationUtils;
 import siuu.projekt.siuuklient.preferences.EventDto;
 
-public class CreateEventTask extends AsyncTask<Void, Void, Void> {
+public class SubscribeEventTask extends AsyncTask<Void, Void, Void> {
     private EventDto eventDto;
 
-    public CreateEventTask(EventDto eventDto) {
+    public SubscribeEventTask(EventDto eventDto) {
         this.eventDto = eventDto;
     }
 
     @Override
     protected Void doInBackground(Void... params) {
         try {
-            System.out.println("EEEE ");
-            final String url = ApplicationUtils.SERV_ADDR + "/event";
+            final String url = ApplicationUtils.SERV_ADDR + "/subscribe";
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
             restTemplate.postForObject(url, eventDto, EventDto.class);

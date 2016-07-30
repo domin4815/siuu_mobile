@@ -72,15 +72,36 @@
     };
 
 
+    //INCONS
+    var baseIcon = L.Icon.extend({
+        options: {
+            shadowUrl: 'shadow.png',
+            iconSize:     [50, 50],
+            shadowSize:   [0, 0],
+            iconAnchor:   [20, 50],
+            shadowAnchor: [50, 10],
+            popupAnchor:  [30, 0]
+        }
+    });
+
+    var eventIcon = new baseIcon({iconUrl: 'event.png'});
+
+
     function addMarker(lat, lng, mId, mName, type) {
         var marker;
 
+        if (type === 'EVENT'){
+            marker = L.marker([lat, lng],  {icon: eventIcon});
 
-        marker = L.marker([lat, lng]);
+        } else {
+            marker = L.marker([lat, lng]);
+
+        }
+
         marker.addTo(map);
         var mapMarker;
         if (type === 'EVENT'){
-            marker.bindPopup('<b>'+mName+'</b><br>').openPopup();
+            marker.bindPopup('<b>'+mName+'</b><br><button onclick="showEvent('+mId+')">Open</button>');
             mapMarker = {
                 lat: lat,
                 lng: lng,
@@ -148,9 +169,27 @@
     map.locate({setView: true, maxZoom: 16});
 
     function onMapClick(e) {
-        app.mapClicked(e.latlng.lat+ ' '+  e.latlng.lng)
+
+        // {icon: ratIcon}
+        var markerEvent = L.marker([e.latlng.lat, e.latlng.lng], {icon: eventIcon});
+        markerEvent.addTo(map);
+
+
+
+        setTimeout(function(){
+            setTimeout(function(){
+                map.removeLayer(markerEvent);
+            },1000)
+            app.mapClicked(e.latlng.lat+ ' '+  e.latlng.lng)
+
+        },500);
     }
 
+    function showEvent(e) {
+        app.eventClicked(e);
+
+    }
+    addMarker(50, 20, '33', '32r4234', 'EVENT');
     map.on('click', onMapClick);
 
 </script>
