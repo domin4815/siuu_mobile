@@ -72,7 +72,7 @@ public class LeafletConnectorImpl {
                 for (EventDto u : others) {
 
                     map.loadUrl("javascript:addMarker("+u.getLocation().getLat()+
-                            ", "+u.getLocation().getLon()+", '"+u.getId()+"', '"
+                            ", "+u.getLocation().getLon()+", '"+u.getId().hashCode()+"', '"
                             +"Category: "+u.getCategory()+"<br>"+u.getName()+u.getComment()+"', 'EVENT')");
                 }
 

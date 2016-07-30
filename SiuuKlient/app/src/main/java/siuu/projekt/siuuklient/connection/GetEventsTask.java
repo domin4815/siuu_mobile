@@ -38,6 +38,8 @@ public class GetEventsTask extends AsyncTask<Void, Void, Void> {
                 eventDtos.add(e);
             }
             map.onEventsUpdate(eventDtos);
+            ApplicationUtils.repository.getEvents().clear();
+            ApplicationUtils.repository.getEvents().addAll(eventDtos);
 
         } catch (Exception e) {
             Log.e("MainActivity", e.getMessage(), e);

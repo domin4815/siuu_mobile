@@ -78,7 +78,7 @@
             shadowUrl: 'shadow.png',
             iconSize:     [50, 50],
             shadowSize:   [0, 0],
-            iconAnchor:   [0, 0],
+            iconAnchor:   [20, 50],
             shadowAnchor: [50, 10],
             popupAnchor:  [30, 0]
         }
@@ -101,7 +101,7 @@
         marker.addTo(map);
         var mapMarker;
         if (type === 'EVENT'){
-            marker.bindPopup('<b>'+mName+'</b><br><button onclick="showEvent()">Click me</button>');
+            marker.bindPopup('<b>'+mName+'</b><br><button onclick="showEvent('+mId+')">Open</button>');
             mapMarker = {
                 lat: lat,
                 lng: lng,

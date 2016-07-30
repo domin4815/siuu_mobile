@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText"
         android:layout_gravity="center_horizontal"
-        android:text="http://192.168.42.180:8080" />
+        android:text="http://192.168.0.101:8080" />
 
     <EditText
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/password" />
+        android:id="@+id/passwordWW" />
 
     <Button
         android:layout_width="wrap_content"

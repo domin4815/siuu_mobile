@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import siuu.projekt.siuuklient.repository.DataReposotory;
+
 /**
  * Created by domin4815 on 24.05.16.
  */
@@ -13,6 +15,7 @@ public class ApplicationUtils {
     public static final long UPDATES_INTERVAL = 30000;
     public static User user;//
     public static final Set<String> allPreferencesList = new HashSet<>();
+    public static final DataReposotory repository = new DataReposotory();
     static {
         allPreferencesList.add("swimming pool");
         allPreferencesList.add("soccer");
@@ -20,6 +23,7 @@ public class ApplicationUtils {
         allPreferencesList.add("tennis");
         allPreferencesList.add("basketball");
         allPreferencesList.add("table tennis");
+
     }
 
 }
