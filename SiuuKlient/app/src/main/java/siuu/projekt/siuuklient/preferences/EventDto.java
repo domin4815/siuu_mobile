@@ -1,6 +1,5 @@
 package siuu.projekt.siuuklient.preferences;
 
-import org.joda.time.DateTime;
 
 import java.util.Date;
 import java.util.List;
