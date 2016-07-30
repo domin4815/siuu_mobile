@@ -29,7 +29,7 @@ public class SubscribeEventActivity extends AppCompatActivity implements View.On
         Bundle extras = getIntent().getExtras();
         desc = (TextView) findViewById(R.id.desc);
         startDate = (TextView) findViewById(R.id.whenEvent);
-        subButton = (Button) findViewById(R.id.button);
+        subButton = (Button) findViewById(R.id.subscribe);
 
         subButton.setOnClickListener(this);
         if (extras != null) {

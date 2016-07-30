@@ -6,6 +6,8 @@ import android.location.Location;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import siuu.projekt.siuuklient.ApplicationUtils;
@@ -68,12 +70,19 @@ public class LeafletConnectorImpl {
             @Override
             public void run() {
 
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd HH:MM");
                 map.loadUrl("javascript:removeAllEventsMarkers()");
                 for (EventDto u : others) {
 
+                    String description = "";
+                    description += (u.getCategory() != null)  ? "Category: "+u.getCategory() : "";
+                    description += (u.getComment() != null)  ? "<br> Description: "+u.getComment() : "";
+                    description += (u.getStartTime() != null)  ? "<br> Starts: "+dateFormat.format(u.getStartTime()) : "";
+                    description += (u.getEndTime() != null)  ? "<br> Ends: "+dateFormat.format(u.getEndTime()) : "";
+
                     map.loadUrl("javascript:addMarker("+u.getLocation().getLat()+
                             ", "+u.getLocation().getLon()+", '"+u.getId().hashCode()+"', '"
-                            +"Category: "+u.getCategory()+"<br>"+u.getName()+u.getComment()+"', 'EVENT')");
+                            +description+"', 'EVENT')");
                 }
 
 

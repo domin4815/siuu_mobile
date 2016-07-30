@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import siuu.projekt.siuuklient.ApplicationUtils;
-import siuu.projekt.siuuklient.Location;
+import siuu.projekt.siuuklient.model.Location;
 import siuu.projekt.siuuklient.User;
 
 /**

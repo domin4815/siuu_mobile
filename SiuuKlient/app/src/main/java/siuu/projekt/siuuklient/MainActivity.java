@@ -19,11 +19,11 @@ import android.view.MenuItem;
 import com.facebook.AccessToken;
 
 import siuu.projekt.siuuklient.connection.GetFriendsTask;
-import siuu.projekt.siuuklient.connection.RegisterUserTask;
-import siuu.projekt.siuuklient.connection.UpdateLocationTask;
 import siuu.projekt.siuuklient.connection.UpdatePreferedActivitiesTask;
 import siuu.projekt.siuuklient.location.SimpleLocationListener;
 import siuu.projekt.siuuklient.map.LeafletMapFragment;
+import siuu.projekt.siuuklient.model.Location;
+import siuu.projekt.siuuklient.preferences.PreferedActivity;
 import siuu.projekt.siuuklient.preferences.PreferencesFragment;
 
 public class MainActivity extends AppCompatActivity

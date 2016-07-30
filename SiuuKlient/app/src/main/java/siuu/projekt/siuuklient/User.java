@@ -1,9 +1,10 @@
 package siuu.projekt.siuuklient;
 
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+
+import siuu.projekt.siuuklient.model.Location;
+import siuu.projekt.siuuklient.preferences.PreferedActivity;
 
 public class User {
     private String id;

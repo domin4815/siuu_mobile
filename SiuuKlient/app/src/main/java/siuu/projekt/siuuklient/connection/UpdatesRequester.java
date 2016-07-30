@@ -30,7 +30,7 @@ public class UpdatesRequester {
         public void run() {
             //new UpdateLocationTask(ApplicationUtils.user).execute();
            // new FindMatchingUsersTask(ApplicationUtils.user, 10000, map).execute();
-          //  new GetAllPreferencesListTask().execute();
+            new GetAllPreferencesListTask().execute();
             new GetEventsTask(map).execute();
         }
 

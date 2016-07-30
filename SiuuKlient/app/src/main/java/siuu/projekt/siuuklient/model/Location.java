@@ -1,4 +1,4 @@
-package siuu.projekt.siuuklient;
+package siuu.projekt.siuuklient.model;
 
 public class Location {
     private double lon = 0.0;

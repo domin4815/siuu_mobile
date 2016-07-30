@@ -7,13 +7,11 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import siuu.projekt.siuuklient.ApplicationUtils;
-import siuu.projekt.siuuklient.Location;
-import siuu.projekt.siuuklient.PreferedActivity;
+import siuu.projekt.siuuklient.preferences.PreferedActivity;
 import siuu.projekt.siuuklient.User;
 
 /**

@@ -13,7 +13,7 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 
 import siuu.projekt.siuuklient.ApplicationUtils;
-import siuu.projekt.siuuklient.Location;
+import siuu.projekt.siuuklient.model.Location;
 import siuu.projekt.siuuklient.User;
 
 /**

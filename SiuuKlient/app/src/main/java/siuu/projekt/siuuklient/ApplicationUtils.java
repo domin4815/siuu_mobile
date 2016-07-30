@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import siuu.projekt.siuuklient.model.FacebookUser;
 import siuu.projekt.siuuklient.repository.DataReposotory;
 
 /**

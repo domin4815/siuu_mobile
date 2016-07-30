@@ -1,4 +1,4 @@
-package siuu.projekt.siuuklient;
+package siuu.projekt.siuuklient.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

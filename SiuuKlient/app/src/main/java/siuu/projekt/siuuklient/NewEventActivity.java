@@ -20,6 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import siuu.projekt.siuuklient.connection.CreateEventTask;
+import siuu.projekt.siuuklient.model.Location;
 import siuu.projekt.siuuklient.preferences.EventDto;
 
 public class NewEventActivity extends AppCompatActivity implements View.OnClickListener{

@@ -15,7 +15,6 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import siuu.projekt.siuuklient.ApplicationUtils;
-import siuu.projekt.siuuklient.PreferedActivity;
 import siuu.projekt.siuuklient.R;
 import siuu.projekt.siuuklient.connection.UpdatePreferedActivitiesTask;
 

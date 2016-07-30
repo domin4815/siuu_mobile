@@ -3,16 +3,11 @@ package siuu.projekt.siuuklient.connection;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.facebook.AccessToken;
-
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import siuu.projekt.siuuklient.ApplicationUtils;
-import siuu.projekt.siuuklient.FacebookUser;
+import siuu.projekt.siuuklient.model.FacebookUser;
 import siuu.projekt.siuuklient.TokenString;
 
 public class GetFriendsTask extends AsyncTask<Void, Void, Void> {

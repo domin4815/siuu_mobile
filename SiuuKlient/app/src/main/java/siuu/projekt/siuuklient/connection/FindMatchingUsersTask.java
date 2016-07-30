@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import siuu.projekt.siuuklient.ApplicationUtils;
-import siuu.projekt.siuuklient.PreferedActivity;
+import siuu.projekt.siuuklient.preferences.PreferedActivity;
 import siuu.projekt.siuuklient.User;
 import siuu.projekt.siuuklient.map.LeafletConnectorImpl;
 

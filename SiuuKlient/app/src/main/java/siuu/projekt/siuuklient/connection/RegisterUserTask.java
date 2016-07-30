@@ -6,10 +6,7 @@ import android.util.Log;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
-
 import siuu.projekt.siuuklient.ApplicationUtils;
-import siuu.projekt.siuuklient.Location;
 import siuu.projekt.siuuklient.User;
 
 /**

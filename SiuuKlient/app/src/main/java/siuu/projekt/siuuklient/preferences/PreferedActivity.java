@@ -1,4 +1,4 @@
-package siuu.projekt.siuuklient;
+package siuu.projekt.siuuklient.preferences;
 
 public class PreferedActivity {
     private String category;
