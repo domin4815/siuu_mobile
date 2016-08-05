@@ -93,9 +93,14 @@
         if (type === 'EVENT'){
             marker = L.marker([lat, lng],  {icon: eventIcon});
 
+        } else if (type === 'VENUE'){
+            marker = L.circle([lat, lng], 30, {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5
+            });
         } else {
             marker = L.marker([lat, lng]);
-
         }
 
         marker.addTo(map);
@@ -109,6 +114,15 @@
                 id: mId,
                 name: mName,
                 typeId: 'EVENT'
+            };
+        } else if (type === 'VENUE'){
+            mapMarker = {
+                lat: lat,
+                lng: lng,
+                marker: marker,
+                id: mId,
+                name: mName,
+                typeId: 'VENUE'
             };
         } else {
             mapMarker = {
@@ -164,7 +178,7 @@
             }
         }
     };
-    //addMarker(50.0679941, 19.9125159, 'Zbigniew44', 'null', 'USER');
+    addMarker(50.0679941, 19.9125159, 'Zbigniew44', 'null', 'VENUE');
 
     map.locate({setView: true, maxZoom: 16});
 

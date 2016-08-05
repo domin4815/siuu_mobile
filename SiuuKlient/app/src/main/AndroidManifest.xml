@@ -37,15 +37,17 @@
         <activity
             android:name=".NewEventActivity"
             android:label="@string/title_activity_new_event"
-            android:theme="@style/AppTheme.NoActionBar"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:label="@string/app_name" />
-
             android:theme="@style/AppTheme.NoActionBar" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        android:theme="@style/AppTheme.NoActionBar" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -57,10 +59,16 @@
         <activity
             android:name=".SubscribeEventActivity"
             android:label="@string/title_activity_subscribe_event"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name=".FindVenueActivity"
+            android:label="@string/title_activity_find_venue"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

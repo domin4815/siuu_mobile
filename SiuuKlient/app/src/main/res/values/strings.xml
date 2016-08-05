@@ -23,4 +23,5 @@
     <string name="error_invalid_email">This email address is invalid</string>
 
     <string name="title_activity_subscribe_event">SubscribeEventActivity</string>
+    <string name="title_activity_find_venue">FindVenueActivity</string>
 </resources>
