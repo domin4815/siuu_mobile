@@ -19,7 +19,7 @@ public class GetAllPreferencesListTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... params) {
         try {
-            String url= ApplicationUtils.SERV_ADDR + "/categories";
+            String url= ApplicationUtils.SERV_ADDR + "events/categories";
             List<String> requestBody = new LinkedList<String>();
 
             RestTemplate restTemplate = new RestTemplate();

@@ -18,14 +18,6 @@ public class ApplicationUtils {
     public static List<FacebookUser> friends = new LinkedList<FacebookUser>();
     public static final Set<String> allPreferencesList = new HashSet<>();
     public static final DataReposotory repository = new DataReposotory();
-    static {
-        allPreferencesList.add("swimming pool");
-        allPreferencesList.add("soccer");
-        allPreferencesList.add("volleyball");
-        allPreferencesList.add("tennis");
-        allPreferencesList.add("basketball");
-        allPreferencesList.add("table tennis");
 
-    }
 
 }

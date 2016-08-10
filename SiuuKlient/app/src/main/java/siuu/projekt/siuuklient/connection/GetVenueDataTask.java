@@ -25,7 +25,7 @@ public class GetVenueDataTask extends AsyncTask<Void, Void, Void> {
             //todo
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-            //Venue[] venues = restTemplate.postForObject(url, query, VenueQueryData.class);
+            Venue[] venues = restTemplate.postForObject(url, query, Venue[].class);
         } catch (Exception e) {
             Log.e("MainActivity", e.getMessage(), e);
         }
