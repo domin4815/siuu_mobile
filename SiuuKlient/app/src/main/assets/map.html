@@ -50,6 +50,10 @@
     var zoomLevel = 10;
     var markers = new Array();
 
+    var markersGroup = L.markerClusterGroup();
+    map.addLayer(markersGroup);
+
+
 
 
     //INTERFACE
@@ -64,7 +68,7 @@
         map.removeLayer(player.marker);
         map.removeLayer(player.circle);
 
-        var radius = acc;
+        var radius = 10;
         player.marker = L.marker([lat, lng]).addTo(map);
         player.circle = L.circle([lat, lng], radius).addTo(map);
         player.lat = lat;
@@ -103,7 +107,8 @@
             marker = L.marker([lat, lng]);
         }
 
-        marker.addTo(map);
+        markersGroup.addLayer(marker);
+
         var mapMarker;
         if (type === 'EVENT'){
             marker.bindPopup('<b>'+mName+'</b><br><button onclick="showEvent('+mId+')">Open</button>');
@@ -172,19 +177,19 @@
         var i = markers.length;
         while (i-- ) {
             if (markers[i].typeId === 'EVENT'){
-                map.removeLayer(markers[i].marker);
+               /// map.removeLayer(markers[i].marker);
+                markersGroup.removeLayer(markers[i].marker);
+
                 markers.splice(i, 1);
 
             }
         }
     };
-    addMarker(50.0679941, 19.9125159, 'Zbigniew44', 'null', 'VENUE');
 
     map.locate({setView: true, maxZoom: 16});
 
     function onMapClick(e) {
 
-        // {icon: ratIcon}
         var markerEvent = L.marker([e.latlng.lat, e.latlng.lng], {icon: eventIcon});
         markerEvent.addTo(map);
 
@@ -203,7 +208,6 @@
         app.eventClicked(e);
 
     }
-    //addMarker(50, 20, '33', '32r4234', 'EVENT');
     map.on('click', onMapClick);
 
 </script>
