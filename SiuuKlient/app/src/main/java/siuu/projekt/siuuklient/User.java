@@ -1,7 +1,10 @@
 package siuu.projekt.siuuklient;
 
 
+import java.util.HashSet;
 import java.util.Set;
+import java.util.StringTokenizer;
+import java.util.logging.StreamHandler;
 
 import siuu.projekt.siuuklient.model.Location;
 import siuu.projekt.siuuklient.preferences.PreferedActivity;
@@ -44,6 +47,15 @@ public class User {
 
     public Set<PreferedActivity> getPreferedActivities() {
         return preferedActivities;
+    }
+
+    public Set<String> getCategories(){
+
+        Set<String> cats = new HashSet<>();
+        for (PreferedActivity p :preferedActivities){
+            cats.add(p.getCategory());
+        }
+        return cats;
     }
 
     public void setPreferedActivities(Set<PreferedActivity> preferedActivities) {

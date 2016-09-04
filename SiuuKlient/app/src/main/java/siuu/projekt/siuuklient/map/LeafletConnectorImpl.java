@@ -8,7 +8,10 @@ import android.webkit.WebView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.StringTokenizer;
 
 import siuu.projekt.siuuklient.ApplicationUtils;
 import siuu.projekt.siuuklient.NewEventActivity;
@@ -65,15 +68,25 @@ public class LeafletConnectorImpl {
         });
     }
 
-    public void onEventsUpdate(final List<EventDto> others) {
+    public void onEventsUpdate(final List<EventDto> others1) {
+        final List<EventDto> others = new LinkedList<>();
+        Set<String> cats = ApplicationUtils.user.getCategories();
+
+        for (EventDto u : others1) {
+
+            if (cats.contains(u.getCategory())){
+                others.add(u);
+            }
+        }
+
         activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
 
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd HH:MM");
                 map.loadUrl("javascript:removeAllEventsMarkers()");
-                for (EventDto u : others) {
 
+                for (EventDto u : others) {
                     String description = "";
                     description += (u.getCategory() != null)  ? "Category: "+u.getCategory() : "";
                     description += (u.getComment() != null)  ? "<br> Description: "+u.getComment() : "";
@@ -83,6 +96,7 @@ public class LeafletConnectorImpl {
                     map.loadUrl("javascript:addMarker("+u.getLocation().getLat()+
                             ", "+u.getLocation().getLon()+", '"+u.getId().hashCode()+"', '"
                             +description+"', 'EVENT')");
+
                 }
 
 

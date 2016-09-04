@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
     }*/
 
     public void onLoggedIn(AccessToken accessToken) {
-        ApplicationUtils.user = new User(accessToken.getUserId(), "", new Location(), new HashSet<PreferedActivity>());
+        ApplicationUtils.user = new User(accessToken.getUserId(), "dsf", new Location(), new HashSet<PreferedActivity>());
         ApplicationUtils.SERV_ADDR = serverAddress.getText().toString();
         User user = ApplicationUtils.user;
         new RegisterUserTask(user).execute();
