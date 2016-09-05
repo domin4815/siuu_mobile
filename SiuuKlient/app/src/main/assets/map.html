@@ -49,6 +49,8 @@
     var mapViewCentered = 0;
     var zoomLevel = 10;
     var markers = new Array();
+    var venues = new Array();
+
 
     var markersGroup = L.markerClusterGroup();
     map.addLayer(markersGroup);
@@ -98,7 +100,7 @@
             marker = L.marker([lat, lng],  {icon: eventIcon});
 
         } else if (type === 'VENUE'){
-            marker = L.circle([lat, lng], 30, {
+            marker = L.circle([lat, lng], 50, {
                 color: 'red',
                 fillColor: '#f03',
                 fillOpacity: 0.5
@@ -172,12 +174,24 @@
         }
     };
 
+    function removeAllVenues(){
+
+        var i = markers.length;
+        while (i-- ) {
+            if (markers[i].typeId === 'VENUE'){
+                map.removeLayer(markers[i].marker);
+                markers.splice(i, 1);
+
+            }
+        }
+    };
+
     function removeAllEventsMarkers(){
 
         var i = markers.length;
         while (i-- ) {
             if (markers[i].typeId === 'EVENT'){
-               /// map.removeLayer(markers[i].marker);
+                /// map.removeLayer(markers[i].marker);
                 markersGroup.removeLayer(markers[i].marker);
 
                 markers.splice(i, 1);

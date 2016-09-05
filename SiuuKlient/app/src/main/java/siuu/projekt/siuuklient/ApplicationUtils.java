@@ -13,7 +13,7 @@ import siuu.projekt.siuuklient.repository.DataReposotory;
  */
 public class ApplicationUtils {
     public static String SERV_ADDR = "http://10.22.106.61:8080"; //"http://10.22.112.73:8080";
-    public static final long UPDATES_INTERVAL = 10000;
+    public static volatile long UPDATES_INTERVAL = 10000;
     public static User user = new User();//
     public static List<FacebookUser> friends = new LinkedList<FacebookUser>();
     public static final Set<String> allPreferencesList = new HashSet<>();

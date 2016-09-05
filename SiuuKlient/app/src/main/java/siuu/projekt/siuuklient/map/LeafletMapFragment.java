@@ -22,7 +22,7 @@ public class LeafletMapFragment extends Fragment implements ILocationListener {
 
     private View view;
     private WebView mapWebView;
-    private LeafletConnectorImpl leafletMap;
+    public static volatile LeafletConnectorImpl leafletMap;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

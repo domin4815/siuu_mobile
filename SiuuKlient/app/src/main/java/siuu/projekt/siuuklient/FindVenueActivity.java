@@ -15,6 +15,11 @@ import android.widget.Spinner;
 import java.util.LinkedList;
 import java.util.List;
 
+import siuu.projekt.siuuklient.connection.GetEventsTask;
+import siuu.projekt.siuuklient.connection.GetVenueDataTask;
+import siuu.projekt.siuuklient.dto.VenueQueryData;
+import siuu.projekt.siuuklient.map.LeafletMapFragment;
+
 public class FindVenueActivity extends AppCompatActivity implements View.OnClickListener{
     private Spinner category;
     private Button search;
@@ -29,6 +34,7 @@ public class FindVenueActivity extends AppCompatActivity implements View.OnClick
         setSupportActionBar(toolbar);
         category = (Spinner) findViewById(R.id.cat);
         search = (Button) findViewById(R.id.search);
+        search.setOnClickListener(this);
         radius = (EditText) findViewById(R.id.editText2);
 
         List<String> prefs = new LinkedList<>();
@@ -44,6 +50,13 @@ public class FindVenueActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
+        VenueQueryData vq = new VenueQueryData();
+        vq.setLat(ApplicationUtils.user.getLocation().getLat());
+        vq.setLon(ApplicationUtils.user.getLocation().getLon());
+        vq.setCategory(spinnerCatSelected);
+        vq.setDist(Double.parseDouble(radius.getText().toString()));
+        new GetVenueDataTask(vq, LeafletMapFragment.leafletMap).execute();
+
         finish();
     }
 

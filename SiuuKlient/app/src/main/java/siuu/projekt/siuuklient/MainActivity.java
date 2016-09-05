@@ -28,6 +28,7 @@ import siuu.projekt.siuuklient.map.LeafletMapFragment;
 import siuu.projekt.siuuklient.model.Location;
 import siuu.projekt.siuuklient.preferences.PreferedActivity;
 import siuu.projekt.siuuklient.preferences.PreferencesFragment;
+import siuu.projekt.siuuklient.settings.SettingsActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -126,6 +127,9 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction ft = fm.beginTransaction();
             fillContainer(ft, mapFragment);
 
+        } else if(id == R.id.nav_manage){
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

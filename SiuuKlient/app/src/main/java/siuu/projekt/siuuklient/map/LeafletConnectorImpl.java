@@ -17,6 +17,7 @@ import siuu.projekt.siuuklient.ApplicationUtils;
 import siuu.projekt.siuuklient.NewEventActivity;
 import siuu.projekt.siuuklient.SubscribeEventActivity;
 import siuu.projekt.siuuklient.User;
+import siuu.projekt.siuuklient.dto.Venue;
 import siuu.projekt.siuuklient.preferences.EventDto;
 
 /**
@@ -63,6 +64,30 @@ public class LeafletConnectorImpl {
                     map.loadUrl("javascript:addMarker("+u.getLocation().getLat()+
                             ", "+u.getLocation().getLon()+", '"+u.getId()+"', 'null', 'USER')");
                 }
+
+            }
+        });
+    }
+    public void onVenuesUpdate(final List<Venue> venues) {
+        int a = 33;
+        a++;
+
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd HH:MM");
+                map.loadUrl("javascript:removeAllVenues()");
+
+                for (Venue u : venues) {
+                    String venueId = u.getLat()+u.getLon()+"";
+
+                    map.loadUrl("javascript:addMarker("+u.getLat()+
+                            ", "+u.getLon()+", '"+venueId+"', '"
+                            +u.getName() + " : "+u.getCategory()+"', 'VENUE')");
+
+                }
+
 
             }
         });

@@ -68,6 +68,10 @@
         <activity
             android:name=".FindVenueActivity"
             android:label="@string/title_activity_find_venue"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:label="@string/title_activity_settings"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

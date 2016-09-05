@@ -24,4 +24,5 @@
 
     <string name="title_activity_subscribe_event">SubscribeEventActivity</string>
     <string name="title_activity_find_venue">FindVenueActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 </resources>
