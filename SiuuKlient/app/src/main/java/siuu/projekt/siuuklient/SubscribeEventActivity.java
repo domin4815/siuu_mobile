@@ -19,6 +19,7 @@ public class SubscribeEventActivity extends AppCompatActivity implements View.On
     private TextView desc;
     private TextView startDate;
     private Button subButton;
+    private TextView subs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class SubscribeEventActivity extends AppCompatActivity implements View.On
         desc = (TextView) findViewById(R.id.desc);
         startDate = (TextView) findViewById(R.id.whenEvent);
         subButton = (Button) findViewById(R.id.subscribe);
+        subs = (TextView) findViewById(R.id.subs);
 
         subButton.setOnClickListener(this);
         if (extras != null) {
@@ -42,6 +44,13 @@ public class SubscribeEventActivity extends AppCompatActivity implements View.On
             }
             if (event != null){
                 desc.setText(event.getCategory()+ " "+event.getComment());
+                if (event.getParticipants() != null){
+                    subs.setText(""+event.getParticipants().size());
+
+                } else {
+                    subs.setText("0");
+
+                }
                // startDate.setText(""+ event.getStartTime().toString());
             }
 

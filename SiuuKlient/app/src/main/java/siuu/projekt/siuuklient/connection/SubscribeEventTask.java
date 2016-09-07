@@ -19,10 +19,12 @@ public class SubscribeEventTask extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... params) {
         try {
-            final String url = ApplicationUtils.SERV_ADDR + "/subscribe";
+            final String url = ApplicationUtils.SERV_ADDR + "/event/sub/"
+                    +ApplicationUtils.user.getId()
+                    +"/"+eventDto.getId();
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-            restTemplate.postForObject(url, eventDto, EventDto.class);
+            EventDto eventUdated = restTemplate.postForObject(url, eventDto, EventDto.class);
         } catch (Exception e) {
             Log.e("MainActivity", e.getMessage(), e);
         }

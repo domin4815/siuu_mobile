@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onResume() {
         super.onResume();
-        System.out.println("friends");
         new GetFriendsTask(AccessToken.getCurrentAccessToken().getToken()).execute();
     }
 
