@@ -39,7 +39,7 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
     private String spinnerCatSelected = "";
 
     private Calendar calendar = Calendar.getInstance();
-    private DateFormat dateFormat  = new SimpleDateFormat("yyyy-mm-dd");
+    private DateFormat dateFormat  = new SimpleDateFormat("yyyy-MM-dd");
 
 
     @Override
@@ -103,22 +103,25 @@ public class NewEventActivity extends AppCompatActivity implements View.OnClickL
         EventDto eventDto = new EventDto();
         eventDto.setCategory(spinnerCatSelected);
         eventDto.setComment(desc.getText().toString());
+        String fromTimeStr = fromTime.getText().toString();
+        String tt[] = fromTimeStr.split(":");
+        int hours = Integer.parseInt(tt[0]);
+        int minutes = Integer.parseInt(tt[1]);
         Date dateFrom = new Date();
-        Date dateTo = new Date((new Date()).getTime() + 1000*60*1);
         //todo: set time
         try {
             dateFrom = dateFormat.parse(fromDate.getText().toString());
-            dateTo = dateFormat.parse(toDate.getText().toString());
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        dateTo = new Date((dateTo).getTime() + 1000*60*1);
+        dateFrom = new Date(dateFrom.getTime()+ (1000*60*minutes+(hours*60*60*1000)));
+        Date dateTo = new Date((dateFrom).getTime() + 1000*60*1);
         eventDto.setMaxPeople(Integer.parseInt(max.getText().toString()));
         eventDto.setMinPeople(Integer.parseInt(min.getText().toString()));
 
-        eventDto.setStartTime(dateFrom);
+        eventDto.setStartTimeDate(dateFrom);
         eventDto.setEndTime(dateTo);
         Location location = new Location();
         location.setLat(Double.parseDouble(latText.getText().toString()));

@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.StringTokenizer;
 
 import siuu.projekt.siuuklient.ApplicationUtils;
 import siuu.projekt.siuuklient.NewEventActivity;
@@ -115,7 +114,7 @@ public class LeafletConnectorImpl {
                     String description = "";
                     description += (u.getCategory() != null)  ? "Category: "+u.getCategory() : "";
                     description += (u.getComment() != null)  ? "<br> Description: "+u.getComment() : "";
-                    description += (u.getStartTime() != null)  ? "<br> Starts: "+dateFormat.format(u.getStartTime()) : "";
+                    description += (u.getStartTimeDate() != null)  ? "<br> Starts: "+dateFormat.format(u.getStartTimeDate()) : "";
                     description += (u.getEndTime() != null)  ? "<br> Ends: "+dateFormat.format(u.getEndTime()) : "";
 
                     map.loadUrl("javascript:addMarker("+u.getLocation().getLat()+

@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity
         locationListener = new SimpleLocationListener(mapFragment, this);
 
         ApplicationUtils.user.setLocation(new Location(49.9, 19.5));
-        ApplicationUtils.user.getPreferedActivities().add(new PreferedActivity("board game", "chess"));
+//        ApplicationUtils.user.getPreferedActivities().add(new PreferedActivity("board game", "chess"));
         new UpdatePreferedActivitiesTask(ApplicationUtils.user).execute();
     }
 

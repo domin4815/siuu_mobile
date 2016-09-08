@@ -15,7 +15,7 @@ public class EventDto {
 
     private String category;
 
-    private Date startTime;
+    private Date startTimeDate;
 
     private Date endTime;
 
@@ -46,12 +46,12 @@ public class EventDto {
         this.comment = comment;
     }
 
-    public Date getStartTime() {
-        return startTime;
+    public Date getStartTimeDate() {
+        return startTimeDate;
     }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public void setStartTimeDate(Date startTimeDate) {
+        this.startTimeDate = startTimeDate;
     }
 
     public Date getEndTime() {

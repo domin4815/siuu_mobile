@@ -21,7 +21,7 @@ public class GetFriendsTask extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... params) {
         if(accessToken != null) {
             try {
-                String url= ApplicationUtils.SERV_ADDR + "/friends";
+                String url= ApplicationUtils.SERV_ADDR + "/facebook/friends";
                 TokenString requestBody = new TokenString(accessToken);
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());

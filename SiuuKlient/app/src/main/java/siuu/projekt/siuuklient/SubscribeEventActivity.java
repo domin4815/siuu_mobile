@@ -1,13 +1,14 @@
 package siuu.projekt.siuuklient;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import siuu.projekt.siuuklient.connection.SubscribeEventTask;
 import siuu.projekt.siuuklient.preferences.EventDto;
@@ -20,6 +21,10 @@ public class SubscribeEventActivity extends AppCompatActivity implements View.On
     private TextView startDate;
     private Button subButton;
     private TextView subs;
+    private TextView subsList;
+
+    private DateFormat dateFormat  = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,8 @@ public class SubscribeEventActivity extends AppCompatActivity implements View.On
         startDate = (TextView) findViewById(R.id.whenEvent);
         subButton = (Button) findViewById(R.id.subscribe);
         subs = (TextView) findViewById(R.id.subs);
+        subsList = (TextView) findViewById(R.id.subsList);
+
 
         subButton.setOnClickListener(this);
         if (extras != null) {
@@ -43,15 +50,23 @@ public class SubscribeEventActivity extends AppCompatActivity implements View.On
                 }
             }
             if (event != null){
-                desc.setText(event.getCategory()+ " "+event.getComment());
+                desc.setText(event.getCategory()+ ": "+event.getComment());
+                if (event.getStartTimeDate() != null){
+                    startDate.setText(dateFormat.format(event.getStartTimeDate()));
+                }
                 if (event.getParticipants() != null){
                     subs.setText(""+event.getParticipants().size());
+                    String subs = "";
+                    for (String s : event.getParticipants()){
+                        subs += s + ",\n";
+                    }
+                    subsList.setText(subs);
 
                 } else {
                     subs.setText("0");
 
                 }
-               // startDate.setText(""+ event.getStartTime().toString());
+               // startDate.setText(""+ event.getStartTimeDate().toString());
             }
 
         }
