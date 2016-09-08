@@ -132,6 +132,8 @@
                 typeId: 'VENUE'
             };
         } else {
+            marker.bindPopup('<b>'+'SIUU User B'+'</b>');
+
             mapMarker = {
                 lat: lat,
                 lng: lng,
@@ -140,6 +142,7 @@
                 name: mName,
                 typeId: 'USER'
             };
+
 
         }
 
@@ -167,7 +170,7 @@
         var i = markers.length;
         while (i-- ) {
             if (markers[i].typeId === 'USER'){
-                map.removeLayer(markers[i].marker);
+                markersGroup.removeLayer(markers[i].marker);
                 markers.splice(i, 1);
 
             }
@@ -179,7 +182,7 @@
         var i = markers.length;
         while (i-- ) {
             if (markers[i].typeId === 'VENUE'){
-                map.removeLayer(markers[i].marker);
+                markersGroup.removeLayer(markers[i].marker);
                 markers.splice(i, 1);
 
             }
@@ -191,7 +194,6 @@
         var i = markers.length;
         while (i-- ) {
             if (markers[i].typeId === 'EVENT'){
-                /// map.removeLayer(markers[i].marker);
                 markersGroup.removeLayer(markers[i].marker);
 
                 markers.splice(i, 1);

@@ -61,15 +61,13 @@ public class LeafletConnectorImpl {
                         continue;
                     }
                     map.loadUrl("javascript:addMarker("+u.getLocation().getLat()+
-                            ", "+u.getLocation().getLon()+", '"+u.getId()+"', 'null', 'USER')");
+                            ", "+u.getLocation().getLon()+", '"+u.getId()+"', "+u.getId()+", 'USER')");
                 }
 
             }
         });
     }
     public void onVenuesUpdate(final List<Venue> venues) {
-        int a = 33;
-        a++;
 
         activity.runOnUiThread(new Runnable() {
             @Override
