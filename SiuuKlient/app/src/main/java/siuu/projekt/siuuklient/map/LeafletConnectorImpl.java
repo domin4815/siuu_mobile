@@ -70,7 +70,7 @@ public class LeafletConnectorImpl {
                     }
 
                     map.loadUrl("javascript:addMarker("+u.getLocation().getLat()+
-                            ", "+u.getLocation().getLon()+", '"+u.getId()+"', "+u.getName()+", 'USER')");
+                            ", "+u.getLocation().getLon()+", '"+u.getId()+"', "+friendName+", 'USER')");
                 }
 
             }
