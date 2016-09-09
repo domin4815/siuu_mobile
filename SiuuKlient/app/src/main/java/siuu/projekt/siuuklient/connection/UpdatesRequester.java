@@ -32,6 +32,7 @@ public class UpdatesRequester {
             new FindMatchingUsersTask(ApplicationUtils.user, 10000, map).execute();
             new GetAllPreferencesListTask().execute();
             new GetEventsTask(map).execute();
+            //new GetFriendsTask().execute();
         }
 
     }

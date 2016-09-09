@@ -17,6 +17,7 @@ import siuu.projekt.siuuklient.NewEventActivity;
 import siuu.projekt.siuuklient.SubscribeEventActivity;
 import siuu.projekt.siuuklient.User;
 import siuu.projekt.siuuklient.dto.Venue;
+import siuu.projekt.siuuklient.model.FacebookUser;
 import siuu.projekt.siuuklient.preferences.EventDto;
 
 /**
@@ -60,8 +61,16 @@ public class LeafletConnectorImpl {
                     if (u.getId().equals(ApplicationUtils.user.getId())){
                         continue;
                     }
+                    String friendName = "Not my friend";
+                    for (FacebookUser facebookUser : ApplicationUtils.friends){
+                        if(facebookUser.getId().equals(u.getId())){
+                            friendName = facebookUser.getName();
+                            break;
+                        }
+                    }
+
                     map.loadUrl("javascript:addMarker("+u.getLocation().getLat()+
-                            ", "+u.getLocation().getLon()+", '"+u.getId()+"', "+u.getId()+", 'USER')");
+                            ", "+u.getLocation().getLon()+", '"+u.getId()+"', "+u.getName()+", 'USER')");
                 }
 
             }
